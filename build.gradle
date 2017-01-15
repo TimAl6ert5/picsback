@@ -1,0 +1,30 @@
+allprojects {
+	repositories {
+	    jcenter()
+	}
+    apply plugin: 'eclipse'
+    apply plugin: 'jacoco'
+}
+
+subprojects {
+	apply plugin: 'java'
+	apply plugin: 'maven'
+	
+	group 'tim.al6ert5.picsback'
+	version '0.1-SNAPSHOT'
+	sourceCompatibility = 1.8
+	targetCompatibility = 1.8
+	
+    configurations {
+        compile.exclude module: "spring-boot-starter-logging"
+    }
+	
+	dependencies {
+	    compile 'org.slf4j:slf4j-api:1.7.21'
+	    testCompile 'junit:junit:4.12'
+	}
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = "2.14"
+}
